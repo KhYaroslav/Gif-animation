@@ -7,10 +7,10 @@ export default function App() {
   return (
     <>
       <Link to="/">Home</Link>
-      <Link to="/content">content</Link>
+      <Link to="/api">content</Link>
       <Routes>
         <Route path="/" element={<GamesComponent />} />
-        <Route path="/content" element={<MainComponent />} />
+        <Route path="/api" element={<MainComponent />} />
       </Routes>
     </>
   );

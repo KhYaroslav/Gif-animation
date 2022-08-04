@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Snake from './Snake';
 import Food from './Food';
-import './App.css';
+import './Snake.css';
+import { useNavigate } from 'react-router-dom';
 
+// const navigate = useNavigate();
 const getRandomCoordinates = () => {
   const min = 1;
   const max = 98;
@@ -125,6 +127,7 @@ class Games extends Component {
   }
 
   onGameOver() {
+    // navigate('/api')
     alert(`Game Over. Snake length is ${this.state.snakeDots.length}`);
     this.setState(initialState);
   }
