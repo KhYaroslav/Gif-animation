@@ -3,6 +3,7 @@ import Snake from './Snake';
 import Food from './Food';
 import './Snake.css';
 import { useNavigate } from 'react-router-dom';
+import Welcome from '../welcome/Welcome';
 
 // const navigate = useNavigate();
 const getRandomCoordinates = () => {
@@ -134,10 +135,13 @@ class Games extends Component {
 
   render() {
     return (
+      <>
+      <Welcome />
       <div className="game-area">
         <Snake snakeDots={this.state.snakeDots} />
         <Food dot={this.state.food} />
-      </div>
+        </div>
+        </>
     );
   }
 }
