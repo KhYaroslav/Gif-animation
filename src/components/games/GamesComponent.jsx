@@ -13,7 +13,7 @@ const getRandomCoordinates = () => {
 
 const initialState = {
   food: getRandomCoordinates(),
-  speed: 30,
+  speed: 100,
   direction: 'RIGHT',
   snakeDots: [
     [0, 0],
@@ -33,6 +33,7 @@ class Games extends Component {
     this.checkIfOutOfBorders();
     this.checkIfCollapsed();
     this.checkIfEat();
+    this.winGame()
   }
 
   onKeyDown = (e) => {
@@ -85,15 +86,22 @@ class Games extends Component {
     }
   }
 
-  checkIfCollapsed() {
+  winGame() {
     const snake = [...this.state.snakeDots];
-    const head = snake[snake.length - 1];
-    snake.pop();
-    snake.forEach((dot) => {
       if (snake.length === 5) {
+        this.onGameWin();
+      }
+  }
+
+  checkIfCollapsed() {
+    let snake = [...this.state.snakeDots];
+    let head = snake[snake.length - 1];
+    snake.pop();
+    snake.forEach(dot => {
+      if (head[0] == dot[0] && head[1] == dot[1]) {
         this.onGameOver();
       }
-    });
+    })
   }
 
   checkIfEat() {
@@ -123,9 +131,13 @@ class Games extends Component {
       });
     }
   }
+  onGameWin() {
+    window.location.href='/api'
+  }
 
   onGameOver() {
-    window.location.href='/api'
+    alert(`Game Over. Snake length is ${this.state.snakeDots.length}`);
+    this.setState(initialState)
   }
 
   render() {
