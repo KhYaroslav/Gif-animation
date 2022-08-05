@@ -13,7 +13,7 @@ const getRandomCoordinates = () => {
 
 const initialState = {
   food: getRandomCoordinates(),
-  speed: 50,
+  speed: 30,
   direction: 'RIGHT',
   snakeDots: [
     [0, 0],
@@ -87,16 +87,19 @@ class Games extends Component {
 
   checkIfCollapsed() {
     const snake = [...this.state.snakeDots];
+    const head = snake[snake.length - 1];
     snake.pop();
-    if (snake.length === 5) {
-      this.onGameOver();
-    }
+    snake.forEach((dot) => {
+      if (snake.length === 5) {
+        this.onGameOver();
+      }
+    });
   }
 
   checkIfEat() {
     const head = this.state.snakeDots[this.state.snakeDots.length - 1];
     const { food } = this.state;
-    if (head[0] === food[0] && head[1] === food[1]) {
+    if (head[0] == food[0] && head[1] == food[1]) {
       this.setState({
         food: getRandomCoordinates(),
       });

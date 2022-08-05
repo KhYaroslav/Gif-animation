@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import GiphyList from './GiphyList';
 import Error from '../error/Error';
 import Background from '../background/Background';
-import Button from '../button/Button';
+// import Button from '../button/Button';
 import './App.css';
 import '../background/Background.scss';
 
@@ -44,7 +44,8 @@ export default function MainComponent() {
         <h1>Генератор анимированного текста</h1>
         <h3>Введите текст:</h3>
         <input className="input-field" value={text} onChange={handleInput} />
-        <Button handleSubmit={handleSubmit} />
+        <button className='submit-btn' onClick={handleSubmit}>Submit</button>
+        {/* <Button handleSubmit={handleSubmit} /> */}
         <Error isError={err} text="Длина ввода должна больше 0" />
         {results && <GiphyList gifs={results} />}
       </div>

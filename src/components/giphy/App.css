@@ -78,7 +78,6 @@ canvas {
 
 }
 
-
 @keyframes gif-item {
   0% {
     transform: translateY(0);
@@ -88,8 +87,6 @@ canvas {
   }
   
 }
-
-
 
 img {
   max-width: 100%;
