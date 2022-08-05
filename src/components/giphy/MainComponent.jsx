@@ -8,6 +8,9 @@ import './App.css';
 import '../background/Background.scss';
 
 const giphy = new GiphyFetch(process.env.REACT_APP_GIPHY_KEY);
+console.log("🚀 ~ file: MainComponent.jsx ~ line 11 ~ giphy", giphy)
+
+
 
 export default function MainComponent() {
   const [text, setText] = useState('');
@@ -26,6 +29,7 @@ export default function MainComponent() {
     console.log(text);
     const apiCall = async () => {
       const res = await giphy.animate(text, { limit: 10 });
+      
       setResults(res.data);
     };
     apiCall();

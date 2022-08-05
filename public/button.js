@@ -1,7 +1,6 @@
 // ammount to add on each button press
 const confettiCount = 20;
 const sequinCount = 10;
-
 // "physics" variables
 const gravityConfetti = 0.3;
 const gravitySequins = 0.55;
@@ -10,40 +9,42 @@ const dragSequins = 0.02;
 const terminalVelocity = 3;
 
 // init other global elements
-const button = document.getElementById('button');
-let disabled = false;
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+const button = document.getElementById("button");
+
+var disabled = false;
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let cx = ctx.canvas.width / 2;
 let cy = ctx.canvas.height / 2;
 
 // add Confetto/Sequin objects to arrays to draw them
-const confetti = [];
-const sequins = [];
+let confetti = [];
+let sequins = [];
 
 // colors, back side is darker for confetti flipping
 const colors = [
-  { front: '#7b5cff', back: '#6245e0' }, // Purple
-  { front: '#b3c7ff', back: '#8fa5e5' }, // Light Blue
-  { front: '#5c86ff', back: '#345dd1' }, // Darker Blue
+  { front: "#7b5cff", back: "#6245e0" }, // Purple
+  { front: "#b3c7ff", back: "#8fa5e5" }, // Light Blue
+  { front: "#5c86ff", back: "#345dd1" }, // Darker Blue
 ];
 
 // helper function to pick a random number within a range
-randomRange = (min, max) => Math.random() * (max - min) + min;
+const randomRange = (min, max) => Math.random() * (max - min) + min;
 
 // helper function to get initial velocities for confetti
 // this weighted spread helps the confetti look more realistic
-initConfettoVelocity = (xRange, yRange) => {
+const initConfettoVelocity = (xRange, yRange) => {
   const x = randomRange(xRange[0], xRange[1]);
   const range = yRange[1] - yRange[0] + 1;
-  let y = yRange[1] - Math.abs(randomRange(0, range) + randomRange(0, range) - range);
+  let y =
+    yRange[1] - Math.abs(randomRange(0, range) + randomRange(0, range) - range);
   if (y >= yRange[1] - 1) {
     // Occasional confetto goes higher than the max
     y += Math.random() < 0.25 ? randomRange(1, 3) : 0;
   }
-  return { x, y: -y };
+  return { x: x, y: -y };
 };
 
 // Confetto Class
@@ -57,11 +58,11 @@ function Confetto() {
   this.position = {
     x: randomRange(
       canvas.width / 2 - button.offsetWidth / 4,
-      canvas.width / 2 + button.offsetWidth / 4,
+      canvas.width / 2 + button.offsetWidth / 4
     ),
     y: randomRange(
       canvas.height / 2 + button.offsetHeight / 2 + 8,
-      canvas.height / 2 + 1.5 * button.offsetHeight - 8,
+      canvas.height / 2 + 1.5 * button.offsetHeight - 8
     ),
   };
   this.rotation = randomRange(0, 2 * Math.PI);
@@ -76,7 +77,7 @@ Confetto.prototype.update = function () {
   this.velocity.x -= this.velocity.x * dragConfetti;
   this.velocity.y = Math.min(
     this.velocity.y + gravityConfetti,
-    terminalVelocity,
+    terminalVelocity
   );
   this.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
 
@@ -90,22 +91,16 @@ Confetto.prototype.update = function () {
 
 // Sequin Class
 function Sequin() {
-  (this.color = colors[Math.floor(randomRange(0, colors.length))].back),
-  (this.radius = randomRange(1, 2)),
-  (this.position = {
-    x: randomRange(
-      canvas.width / 2 - button.offsetWidth / 3,
-      canvas.width / 2 + button.offsetWidth / 3,
-    ),
-    y: randomRange(
-      canvas.height / 2 + button.offsetHeight / 2 + 8,
-      canvas.height / 2 + 1.5 * button.offsetHeight - 8,
-    ),
-  }),
-  (this.velocity = {
+  this.color = colors[Math.floor(randomRange(0, colors.length))].back,
+  this.radius = randomRange(1, 2),
+  this.position = {
+    x: randomRange(canvas.width/2 - button.offsetWidth/3, canvas.width/2 + button.offsetWidth/3),
+    y: randomRange(canvas.height/2 + button.offsetHeight/2 + 8, canvas.height/2 + (1.5 * button.offsetHeight) - 8),
+  },
+  this.velocity = {
     x: randomRange(-6, 6),
-    y: randomRange(-8, -12),
-  });
+    y: randomRange(-8, -12)
+  }
 }
 Sequin.prototype.update = function () {
   // apply forces to velocity
@@ -118,7 +113,7 @@ Sequin.prototype.update = function () {
 };
 
 // add elements to arrays to be drawn
-initBurst = () => {
+const initBurst = () => {
   for (let i = 0; i < confettiCount; i++) {
     confetti.push(new Confetto());
   }
@@ -128,12 +123,12 @@ initBurst = () => {
 };
 
 // draws the elements on the canvas
-render = () => {
+const render = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   confetti.forEach((confetto, index) => {
-    const width = confetto.dimensions.x * confetto.scale.x;
-    const height = confetto.dimensions.y * confetto.scale.y;
+    let width = confetto.dimensions.x * confetto.scale.x;
+    let height = confetto.dimensions.y * confetto.scale.y;
 
     // move canvas to position and rotate
     ctx.translate(confetto.position.x, confetto.position.y);
@@ -143,7 +138,8 @@ render = () => {
     confetto.update();
 
     // get front or back fill color
-    ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
+    ctx.fillStyle =
+      confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
 
     // draw confetto
     ctx.fillRect(-width / 2, -height / 2, width, height);
@@ -157,7 +153,7 @@ render = () => {
         canvas.width / 2 - button.offsetWidth / 2,
         canvas.height / 2 + button.offsetHeight / 2,
         button.offsetWidth,
-        button.offsetHeight,
+        button.offsetHeight
       );
     }
   });
@@ -186,7 +182,7 @@ render = () => {
         canvas.width / 2 - button.offsetWidth / 2,
         canvas.height / 2 + button.offsetHeight / 2,
         button.offsetWidth,
-        button.offsetHeight,
+        button.offsetHeight
       );
     }
   });
@@ -204,23 +200,23 @@ render = () => {
 };
 
 // cycle through button states when clicked
-clickButton = () => {
+const clickButton = () => {
   if (!disabled) {
     disabled = true;
     // Loading stage
-    button.classList.add('loading');
-    button.classList.remove('ready');
+    button.classList.add("loading");
+    button.classList.remove("ready");
     setTimeout(() => {
       // Completed stage
-      button.classList.add('complete');
-      button.classList.remove('loading');
+      button.classList.add("complete");
+      button.classList.remove("loading");
       setTimeout(() => {
         window.initBurst();
         setTimeout(() => {
           // Reset button so user can select it again
           disabled = false;
-          button.classList.add('ready');
-          button.classList.remove('complete');
+          button.classList.add("ready");
+          button.classList.remove("complete");
         }, 4000);
       }, 320);
     }, 1800);
@@ -228,7 +224,7 @@ clickButton = () => {
 };
 
 // re-init canvas if the window size changes
-resizeCanvas = () => {
+const resizeCanvas = () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   cx = ctx.canvas.width / 2;
@@ -236,7 +232,7 @@ resizeCanvas = () => {
 };
 
 // resize listenter
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   resizeCanvas();
 });
 
@@ -248,10 +244,10 @@ document.body.onkeyup = (e) => {
 };
 
 // Set up button text transition timings on page load
-textElements = button.querySelectorAll('.button-text');
+let textElements = button.querySelectorAll(".button-text");
 textElements.forEach((element) => {
-  characters = element.innerText.split('');
-  let characterHTML = '';
+let  characters = element.innerText.split("");
+  let characterHTML = "";
   characters.forEach((letter, index) => {
     characterHTML += `<span class="char${index}" style="--d:${
       index * 30

@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import Snake from './Snake';
 import Food from './Food';
 import './Snake.css';
-import { useNavigate } from 'react-router-dom';
-import Welcome from '../welcome/Welcome';
 
-// const navigate = useNavigate();
 const getRandomCoordinates = () => {
   const min = 1;
   const max = 98;
@@ -16,7 +13,7 @@ const getRandomCoordinates = () => {
 
 const initialState = {
   food: getRandomCoordinates(),
-  speed: 100,
+  speed: 50,
   direction: 'RIGHT',
   snakeDots: [
     [0, 0],
@@ -90,19 +87,16 @@ class Games extends Component {
 
   checkIfCollapsed() {
     const snake = [...this.state.snakeDots];
-    const head = snake[snake.length - 1];
     snake.pop();
-    snake.forEach((dot) => {
-      if (head[0] == dot[0] && head[1] == dot[1]) {
-        this.onGameOver();
-      }
-    });
+    if (snake.length === 5) {
+      this.onGameOver();
+    }
   }
 
   checkIfEat() {
     const head = this.state.snakeDots[this.state.snakeDots.length - 1];
     const { food } = this.state;
-    if (head[0] == food[0] && head[1] == food[1]) {
+    if (head[0] === food[0] && head[1] === food[1]) {
       this.setState({
         food: getRandomCoordinates(),
       });
@@ -128,9 +122,7 @@ class Games extends Component {
   }
 
   onGameOver() {
-    // navigate('/api')
-    alert(`Game Over. Snake length is ${this.state.snakeDots.length}`);
-    this.setState(initialState);
+    window.location.href='/api'
   }
 
   render() {

@@ -10,9 +10,9 @@ canvas {
   width: 100%;
   z-index: 100;
 }
-/* #canvas{
+#canvas{
   z-index: 100;
-} */
+}
 .App {
   text-align: center;
   margin: 0;
@@ -73,86 +73,22 @@ canvas {
 }
 
 .gif-item {
-  animation: gif-item 30s infinite;
+  animation: gif-item 10s infinite;
   flex-basis: 19%;
+
 }
+
 
 @keyframes gif-item {
   0% {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(45vh);
+    transform: translateY(40vh);
   }
+  
 }
 
-/* @keyframes gif-item {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  5% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  15% {
-    transform: translateY(0);
-
-    padding-bottom: 5px;
-  }
-
-  30% {
-    transform: translateY(-50%);
-  }
-
-  40% {
-    transform: translateY(0%);
-
-    padding-bottom: 6px;
-  }
-
-  50% {
-    transform: translateY(-30%);
-  }
-
-  70% {
-    transform: translateY(0%);
-
-    padding-bottom: 7px;
-  }
-
-  80% {
-    transform: translateY(-15%);
-  }
-
-  90% {
-    transform: translateY(0%);
-
-    padding-bottom: 8px;
-  }
-
-  95% {
-    transform: translateY(-7%);
-  }
-
-  97% {
-    transform: translateY(0%);
-
-    padding-bottom: 9px;
-  }
-
-  99% {
-    transform: translateY(-3%);
-  }
-
-  100% {
-    transform: translateY(0);
-
-    padding-bottom: 9px;
-
-    opacity: 1;
-  }
-} */
 
 
 img {

@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Welcome.scss';
 
 export default function Welcome() {
   return (
     <div className='welcome'>
     <div id="typedStrings">
-    <p>API project by KH.Yaroslav</p>
-    <p>Welcome to <a className='logotip' href="https://codepen.io/" target="_blank" rel="noreferrer"><i class='fa fa-codepen'></i></a></p>
+    <p>by KH.Yaroslav</p>
+    <p>Api project <Link className='logotip' to="/games" target="_blank" rel="noreferrer"><i className='fa fa-codepen'></i></Link></p>
   </div>
       <span id="span"></span>
       </div>
