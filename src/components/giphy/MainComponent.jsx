@@ -44,7 +44,7 @@ export default function MainComponent() {
         <h1>Генератор анимированного текста</h1>
         <h3>Введите текст:</h3>
         <input className="input-field" value={text} onChange={handleInput} />
-        <button className='submit-btn' onClick={handleSubmit}>Submit</button>
+        <button className='submit-btn' onClick={handleSubmit}>Добавить</button>
         {/* <Button handleSubmit={handleSubmit} /> */}
         <Error isError={err} text="Длина ввода должна больше 0" />
         {results && <GiphyList gifs={results} />}
