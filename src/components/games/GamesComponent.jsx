@@ -136,7 +136,7 @@ class Games extends Component {
   }
 
   onGameOver() {
-    alert(`Game Over. Snake length is ${this.state.snakeDots.length}`);
+    alert('Ну ты и чайник, БОМ БОМ БОМ!');
     this.setState(initialState)
   }
 
