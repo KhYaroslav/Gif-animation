@@ -135,13 +135,10 @@ class Games extends Component {
 
   render() {
     return (
-      <>
-      <Welcome />
       <div className="game-area">
         <Snake snakeDots={this.state.snakeDots} />
         <Food dot={this.state.food} />
         </div>
-        </>
     );
   }
 }

@@ -73,10 +73,20 @@ canvas {
 }
 
 .gif-item {
-  animation: gif-item 10s infinite;
+  animation: gif-item 30s infinite;
   flex-basis: 19%;
 }
+
 @keyframes gif-item {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(45vh);
+  }
+}
+
+/* @keyframes gif-item {
   0% {
     transform: translateY(-100%);
     opacity: 0;
@@ -142,16 +152,8 @@ canvas {
 
     opacity: 1;
   }
-}
-
-/* @keyframes gif-item {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(45vh);
-  }
 } */
+
 
 img {
   max-width: 100%;

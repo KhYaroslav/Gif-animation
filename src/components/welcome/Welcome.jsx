@@ -1,6 +1,5 @@
 import React from 'react'
 import './Welcome.scss';
-import './welcome.js';
 
 export default function Welcome() {
   return (

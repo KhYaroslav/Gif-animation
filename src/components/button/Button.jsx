@@ -1,6 +1,5 @@
 import React from 'react';
 import './StyleButton.scss';
-import'./button.js'
 
 export default function Button({ handleSubmit }) {
   return (
