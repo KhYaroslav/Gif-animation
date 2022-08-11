@@ -8,9 +8,6 @@ import './App.css';
 import '../background/Background.scss';
 
 const giphy = new GiphyFetch(process.env.REACT_APP_GIPHY_KEY);
-console.log("🚀 ~ file: MainComponent.jsx ~ line 11 ~ giphy", giphy)
-
-
 
 export default function MainComponent() {
   const [text, setText] = useState('');

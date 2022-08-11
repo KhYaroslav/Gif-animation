@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainComponent from './components/giphy/MainComponent';
-// import Welcome from './components/welcome/Welcome';
 import GamesComponent from './components/games/GamesComponent';
 import IntroComp from './components/intro/IntroComp';
+// import Welcome from './components/welcome/Welcome';
 
 export default function App() {
   return (

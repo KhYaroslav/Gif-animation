@@ -10,7 +10,7 @@ export default function Intro() {
     <Navigate to="/games" />
   ) : (
     <div className='intro' onClick={() => navigate('/games')} >
-      <p id='intoTXT'>API project by: Ctrl C + Ctrl V</p>
+      <p id='intoTXT'>API project by: KH.Yaroslav</p>
       </div>
   )
 }
